@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+   
+    <title>Winter 14</title>
+    <link href="http://saasmath.seattleacademy.org/css/bootstrap.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script>
+    $(document).ready(function() {
+        $('input').attr('size',7);
+
+        var count = 0
+                var counter = setInterval(timer, 1000); //1000 will  run it every 1 second
+                function timer() {
+                    count = count + 1;
+
+                    if (count >= 200) {
+                        clearInterval(counter);
+                        alert("Times up!")
+                        return;
+                    }
+
+                    $("#elapsedtime").html(count);
+                }
+
+                $('#reset').click(function() {
+                    $('input').val("");
+                    $('input').removeClass("correct");
+                    $('input').removeClass("incorrect");
+                    $('.mark').html("");
+                    count = 0;
+                    $('#percorrect').text(100);
+                    $('#pererror').text(0.00);
+                    $('#errors').text(0);
+                    $('#correct').text(0);
+                });
+
+                $('input').change(function() {
+                   
+                    correct=$(this).data('correct');
+                    response=$(this).val();
+                    
+                    if(correct==response){
+                        $(this).removeClass("incorrect").addClass("correct");
+                        numcorrect = $('#correct').text();
+                        //We multiply by 1 change from type text to number
+                        $('#correct').text(numcorrect*1+1);
+                    }
+                    else
+                    {
+                        $(this).removeClass("correct").addClass("incorrect");
+                        numerrors = $('#errors').text();
+                        $('#errors').text(numerrors*1+1);
+                    }
+
+                    numerrors = $('#errors').text()*1;
+                    numcorrect = $('#correct').text()*1;
+                    console.log(numcorrect);
+                    console.log(numerrors);
+                    $('#percorrect').text((numcorrect*1/(numcorrect*1+numerrors*1))*100);
+                    pererrors = numerrors * 1 / (numerrors * 1 + numcorrect * 1);
+                    $('#pererrors').text(pererrors.toFixed(2) * 100);
+
+                    if(percorrect>90) {
+                        $(this)
+                    }
+
+                    console.log(percorrect);
+                });
+});
+</script>
+
+<style type="text/css">
+.correct { 
+    background: #00FF66;
+}
+
+.incorrect { 
+    background: #FF0033;
+}
+
+#score{
+    margin:5px;
+    background: #00FF66;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left:10px;
+    padding-right: 10px;
+}
+
+input {
+    margin-left: 10px;
+}
+
+</style>
+
+</head>
+
+<body>
+    <div class="container">
+     <div id="score" class="row">
+
+      <div class="col-xs-3"><strong>Correct:</strong> <span id="correct">0</span></div>
+      <div class="col-xs-3"><strong>%Correct:</strong> <span id="percorrect">100.0</span></div>  
+      <div class="col-xs-3"><strong>Errors:</strong>  <span id="errors">0</span></div>
+      <div class="col-xs-3"><strong>Time:</strong> <span id="elapsedtime">0</span></div> 
+
+  </div></div><br>
+  
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-1">
+        <div id="quiz">
+
+            <h3>Answer the following questions:</h3>
+
+            <div class="body">
+                
+                <div class="row">
+
+                    <div class="col-md-3 col-sm-4 col-xs-6 input">
+                        <p>\(\sqrt[3]{8}\)<input data-correct ="2" type="text"/><span></span></p>
+                    </div>
+                    <div class="col-md-3 col-sm-4 col-xs-6 input">
+                        <p>\(\sqrt[3]{64}\)<input data-correct ="4" type="text"/><span></span></p>
+                    </div>
+                    <div class="col-md-3 col-sm-4 col-xs-6 input">
+                        <p>\(\sqrt[4]{81}\)<input data-correct ="3" type="text"/><span></span></p>
+                    </div>
+                    <div class="col-md-3 col-sm-4 col-xs-6 input">
+                        <p>\(\sqrt{1024}\)<input data-correct ="32" type="text"/><span></span></p>
+                    </div>
+                    <div class="col-md-3 col-sm-4 col-xs-6 input">
+                        <p>\(11^3\)<input data-correct ="1331" type="text"/><span></span></p>
+                    </div>
+                    <div class="col-md-3 col-sm-4 col-xs-6 input">
+                     <p>\(\sqrt[3]{216}\)<input data-correct ="6" type="text"/><span></span></p>
+                 </div>
+                 <div class="col-md-3 col-sm-4 col-xs-6 input">
+                     <p>\(64^\tfrac{2}{3}\)<input data-correct ="16" type="text"/><span></span><p>
+                     </div>
+                     <div class="col-md-3 col-sm-4 col-xs-6 input">
+                         <p>\(9^\tfrac{1}{2}\)<input data-correct="3" type="text" /><span></span></p>
+                     </div>
+                     <div class="col-md-3 col-sm-4 col-xs-6 input">
+                         <p>\(216^\tfrac{1}{3}\)<input data-correct="6" type="text" /><span></span></p>
+                     </div>
+                     <div class="col-md-3 col-sm-4 col-xs-6 input">
+                         <p>\(\sqrt{9}\)<input data-correct="3" type="text" /><span></span></p>
+                     </div>
+                     <div class="col-md-3 col-sm-4 col-xs-6 input">
+                         <p>\(-1000^\tfrac{-2}{3}\)<input data-correct="-1/100" type="text" /><span></span></p>
+                     </div>
+                     <div class="col-md-3 col-sm-4 col-xs-6 input">
+                         <p>\(32^\tfrac{-6}{5}\)<input data-correct="1/64" type="text" /><span></span></p>
+                     </div>
+                     <div class="col-md-3 col-sm-4 col-xs-6 input">
+                         <p>\(121^\tfrac{1}{2}\)<input data-correct="11" type="text" /><span></span></p>
+                     </div>
+                     <div class="col-md-3 col-sm-4 col-xs-6 input">
+                         <p>\(1728^\tfrac{1}{3}\)<input data-correct="12" type="text" /><span></span></p>
+                     </div>
+                     <div class="col-md-3 col-sm-4 col-xs-6 input">
+                         <p>\(64^\tfrac{5}{6}\)<input data-correct="32" type="text" /><span></span></p>
+                     </div>
+                     <div class="col-md-3 col-sm-4 col-xs-6 input">
+                         <p>\((-64)^\tfrac{3}{2}\)<input data-correct="512" type="text" /><span></span></p>
+                     </div>
+                     <div class="col-md-3 col-sm-4 col-xs-6 input">
+                         <p>\(-64^\tfrac{3}{2}\)<input data-correct="-512" type="text" /><span></span></p>
+                     </div>
+                     <div class="col-md-3 col-sm-4 col-xs-6 input">
+                         <p>\(32^\tfrac{-6}{5}\)<input data-correct="1/64" type="text" /><span></span></p>
+                     </div>
+                     <div class="col-md-3 col-sm-4 col-xs-6 input">
+                         <p>\(81^\tfrac{-3}{2}\)<input data-correct="1/729" type="text" /><span></span></p>
+                     </div>
+                     <div class="col-md-3 col-sm-4 col-xs-6 input">
+                         <p>\(243^\tfrac{-4}{5}\)<input data-correct="1/81" type="text" /><span></span></p>
+                     </div>
+                     <div class="col-md-3 col-sm-4 col-xs-6 input">
+                         <p>\((\frac{-125}{27})^\tfrac{-4}{3}\)<input data-correct="81/625" type="text" /><span></span></p>
+                     </div>
+                 </div>
+
+                 <div class="row">
+                    <div class="col-xs-12">
+                        <!--<button id="reset">reset</button>-->
+                        <button type="button" id="reset" class="btn btn-primary" autocomplete="off">Reset</button >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>
